@@ -534,11 +534,44 @@ function hmrAcceptRun(bundle, id) {
 },{}],"gLLPy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _resetCss = require("./reset.css");
+var _globalCss = require("./global.css");
 var _app1Css = require("./app1.css");
+var _app2Css = require("./app2.css");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+const $button1 = (0, _jqueryDefault.default)("#add1");
+const $button2 = (0, _jqueryDefault.default)("#minus1");
+const $button3 = (0, _jqueryDefault.default)("#mul2");
+const $button4 = (0, _jqueryDefault.default)("#divide2");
+const $number = (0, _jqueryDefault.default)("#number");
+const n = localStorage.getItem("n");
+$number.text(n || 100);
+$button1.on("click", ()=>{
+    let n = parseInt($number.text());
+    n += 1;
+    localStorage.setItem("n", n);
+    $number.text(n);
+});
+$button2.on("click", ()=>{
+    let n = parseInt($number.text());
+    n -= 1;
+    localStorage.setItem("n", n);
+    $number.text(n);
+});
+$button3.on("click", ()=>{
+    let n = parseInt($number.text());
+    n *= 2;
+    localStorage.setItem("n", n);
+    $number.text(n);
+});
+$button4.on("click", ()=>{
+    let n = parseInt($number.text());
+    n /= 2;
+    localStorage.setItem("n", n);
+    $number.text(n);
+});
 
-},{"./reset.css":"8XPx9","./app1.css":"7FkZd","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"8XPx9":[function() {},{}],"7FkZd":[function() {},{}],"hgMhh":[function(require,module,exports) {
+},{"./reset.css":"8XPx9","./app1.css":"7FkZd","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E","./app2.css":"8RnuD","./global.css":"11axS"}],"8XPx9":[function() {},{}],"7FkZd":[function() {},{}],"hgMhh":[function(require,module,exports) {
 /*!
  * jQuery JavaScript Library v3.6.3
  * https://jquery.com/
@@ -7405,6 +7438,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["lw3jf","gLLPy"], "gLLPy", "parcelRequire51d7")
+},{}],"8RnuD":[function() {},{}],"11axS":[function() {},{}]},["lw3jf","gLLPy"], "gLLPy", "parcelRequire51d7")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
