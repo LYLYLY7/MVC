@@ -532,11 +532,16 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"gLLPy":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _resetCss = require("./reset.css");
 var _globalCss = require("./global.css");
+var _app1Js = require("./app1.js");
+var _app2Js = require("./app2.js");
+var _app3Js = require("./app3.js");
+var _app4Js = require("./app4.js");
+
+},{"./reset.css":"8XPx9","./global.css":"11axS","./app1.js":"gMhIk","./app2.js":"alK4Z","./app3.js":"264pe","./app4.js":"6ZENx"}],"8XPx9":[function() {},{}],"11axS":[function() {},{}],"gMhIk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _app1Css = require("./app1.css");
-var _app2Css = require("./app2.css");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
 const $button1 = (0, _jqueryDefault.default)("#add1");
@@ -571,7 +576,7 @@ $button4.on("click", ()=>{
     $number.text(n);
 });
 
-},{"./reset.css":"8XPx9","./app1.css":"7FkZd","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E","./app2.css":"8RnuD","./global.css":"11axS"}],"8XPx9":[function() {},{}],"7FkZd":[function() {},{}],"hgMhh":[function(require,module,exports) {
+},{"./app1.css":"7FkZd","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"7FkZd":[function() {},{}],"hgMhh":[function(require,module,exports) {
 /*!
  * jQuery JavaScript Library v3.6.3
  * https://jquery.com/
@@ -7438,6 +7443,49 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"8RnuD":[function() {},{}],"11axS":[function() {},{}]},["lw3jf","gLLPy"], "gLLPy", "parcelRequire51d7")
+},{}],"alK4Z":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _app2Css = require("./app2.css");
+var _jquery = require("jquery");
+var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+const $tabBar = (0, _jqueryDefault.default)("#app2 .tab-bar");
+const $tabContent = (0, _jqueryDefault.default)("#app2 .tab-content");
+$tabBar.on("click", "li", (e)=>{
+    // 获取子元素
+    const $li = (0, _jqueryDefault.default)(e.currentTarget);
+    $li.addClass("selected").siblings().removeClass("selected");
+    // 获取子元素在兄弟之间排行老几
+    const index = $li.index();
+    // 找到孩子 ，然后将index的孩子css变为
+    $tabContent.children().eq(index).addClass("active").siblings().removeClass("active");
+// eq是等于的意思
+});
+// 找到111和222里面的索引为0的元素，触发click事件
+$tabBar.children().eq(0).trigger("click");
+
+},{"./app2.css":"8RnuD","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"8RnuD":[function() {},{}],"264pe":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _app3Css = require("./app3.css");
+var _jquery = require("jquery");
+var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+const $square = (0, _jqueryDefault.default)("#app3 .square");
+$square.on("click", ()=>{
+    // toggleClass 有就加上，没有就删去
+    $square.toggleClass("active");
+});
+
+},{"./app3.css":"iOgrn","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"iOgrn":[function() {},{}],"6ZENx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _jquery = require("jquery");
+var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+var _app4Css = require("./app4.css");
+const $circle = (0, _jqueryDefault.default)("#app4 .circle");
+$circle.on("mouseenter", ()=>{
+    $circle.addClass("active");
+}).on("mouseleave", ()=>{
+    $circle.removeClass("active");
+});
+
+},{"jquery":"hgMhh","./app4.css":"jZ1KW","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"jZ1KW":[function() {},{}]},["lw3jf","gLLPy"], "gLLPy", "parcelRequire51d7")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
