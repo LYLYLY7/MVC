@@ -1,16 +1,26 @@
-import './app3.css'
-import $ from 'jquery'
+import './app3.css';
+import $ from 'jquery';
 
-const $square =$('#app3 .square')
+const $square = $('#app3 .square');
+// yes no undefined
+const localKey = 'app3.active'
+const active = localStorage.getItem(localKey) === 'yes';
 
-$square.on('click',()=>{
-  if($square.hasClass('active')){
-    $square.removeClass('active')
-    localStorage.setItem('app3.active','no')
-  }else{
-    $square.addClass('active')
-    localStorage.setItem('app3.active','yes')
+// if(active){
+//   $square.addClass('active')
+// }else{
+//   $square.removeClass('active')
+// }
+
+$square.toggleClass('active', active);
+$square.on('click', () => {
+  if ($square.hasClass('active')) {
+    $square.removeClass('active');
+    localStorage.setItem(localKey, 'no');
+  } else {
+    $square.addClass('active');
+    localStorage.setItem('app3.active', 'yes');
   }
   // toggleClass 有就加上，没有就删去
   // $square.toggleClass('active')
-})
+});
