@@ -1,6 +1,19 @@
 import './app2.css';
 import $ from 'jquery';
 
+const html = `    <section id="app2">
+      <ol class="tab-bar">
+        <li><span>111</span></li>
+        <li><span>2222</span></li>
+      </ol>
+      <ol class="tab-content">
+        <li>内容1</li>
+        <li>内容2</li>
+      </ol>
+    </section>
+`
+const $element = $(html).appendTo($(`body>.page`))
+
 const $tabBar = $('#app2 .tab-bar');
 const $tabContent = $('#app2 .tab-content');
 const index =localStorage.getItem('app2.index') || 0

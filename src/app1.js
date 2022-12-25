@@ -14,7 +14,7 @@ const html = `
       </div>
     </section>
 `
-const $element = $(html).prependTo($(`body>.page`))
+const $element = $(html).appendTo($(`body>.page`))
 
 const $button1 = $('#add1');
 const $button2 = $('#minus1');
