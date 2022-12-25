@@ -4,6 +4,13 @@ import $ from 'jquery'
 const $square =$('#app3 .square')
 
 $square.on('click',()=>{
+  if($square.hasClass('active')){
+    $square.removeClass('active')
+    localStorage.setItem('app3.active','no')
+  }else{
+    $square.addClass('active')
+    localStorage.setItem('app3.active','yes')
+  }
   // toggleClass 有就加上，没有就删去
-  $square.toggleClass('active')
+  // $square.toggleClass('active')
 })
