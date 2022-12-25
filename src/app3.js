@@ -2,8 +2,8 @@ import './app3.css';
 import $ from 'jquery';
 
 const $square = $('#app3 .square');
-// yes no undefined
 const localKey = 'app3.active'
+// yes no undefined
 const active = localStorage.getItem(localKey) === 'yes';
 
 // if(active){
