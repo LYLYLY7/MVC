@@ -546,8 +546,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _app1Css = require("./app1.css");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
-// 初始化html
-const html = `
+const view = {
+    html: `
     <section id="app1">
       <div class="output">
         <span id="number">100</span>
@@ -559,43 +559,65 @@ const html = `
         <button id="divide2">/2</button>
       </div>
     </section>
-`;
-const $element = (0, _jqueryDefault.default)(html).appendTo((0, _jqueryDefault.default)(`body > .page`));
-// 寻找重要的元素
-const $button1 = (0, _jqueryDefault.default)("#add1");
-const $button2 = (0, _jqueryDefault.default)("#minus1");
-const $button3 = (0, _jqueryDefault.default)("#mul2");
-const $button4 = (0, _jqueryDefault.default)("#divide2");
-const $number = (0, _jqueryDefault.default)("#number");
-// 始化数据
-const n = localStorage.getItem("n");
-// 将数据渲染到页面
-$number.text(n || 100);
-// 绑定鼠标事件
-$button1.on("click", ()=>{
-    let n = parseInt($number.text());
-    n += 1;
-    localStorage.setItem("n", n);
-    $number.text(n);
-});
-$button2.on("click", ()=>{
-    let n = parseInt($number.text());
-    n -= 1;
-    localStorage.setItem("n", n);
-    $number.text(n);
-});
-$button3.on("click", ()=>{
-    let n = parseInt($number.text());
-    n *= 2;
-    localStorage.setItem("n", n);
-    $number.text(n);
-});
-$button4.on("click", ()=>{
-    let n = parseInt($number.text());
-    n /= 2;
-    localStorage.setItem("n", n);
-    $number.text(n);
-});
+`,
+    update () {
+        // 将数据渲染到页面
+        controller.ui.number.text(model.data.n || 100);
+    },
+    //   将元素渲染到页面
+    render () {
+        const $element = (0, _jqueryDefault.default)(view.html).appendTo((0, _jqueryDefault.default)(`body > .page`));
+    }
+};
+const model = {
+    data: {
+        // 始化数据
+        n: localStorage.getItem("n")
+    }
+};
+const controller = {
+    init () {
+        controller.ui = {
+            button1: (0, _jqueryDefault.default)("#add1"),
+            button2: (0, _jqueryDefault.default)("#minus1"),
+            button3: (0, _jqueryDefault.default)("#mul2"),
+            button4: (0, _jqueryDefault.default)("#divide2"),
+            number: (0, _jqueryDefault.default)("#number")
+        };
+        controller.bindEvents();
+    },
+    bindEvents () {
+        // 绑定鼠标事件
+        controller.ui.button1.on("click", ()=>{
+            let n = parseInt(controller.ui.number.text());
+            n += 1;
+            localStorage.setItem("n", n);
+            controller.ui.number.text(n);
+        });
+        controller.ui.button2.on("click", ()=>{
+            let n = parseInt(controller.ui.number.text());
+            n -= 1;
+            localStorage.setItem("n", n);
+            controller.ui.number.text(n);
+        });
+        controller.ui.button3.on("click", ()=>{
+            let n = parseInt(controller.ui.number.text());
+            n *= 2;
+            localStorage.setItem("n", n);
+            controller.ui.number.text(n);
+        });
+        controller.ui.button4.on("click", ()=>{
+            let n = parseInt(controller.ui.number.text());
+            n /= 2;
+            localStorage.setItem("n", n);
+            controller.ui.number.text(n);
+        });
+    }
+};
+// 第一次渲染html,将元素加载到页面里
+view.render();
+// 初始化，获取元素,并绑定事件
+controller.init();
 
 },{"./app1.css":"7FkZd","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"7FkZd":[function() {},{}],"hgMhh":[function(require,module,exports) {
 /*!
