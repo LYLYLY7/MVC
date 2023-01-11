@@ -538,19 +538,40 @@ var _app1Js = require("./app1.js");
 var _app2Js = require("./app2.js");
 var _app3Js = require("./app3.js");
 var _app4Js = require("./app4.js");
+const img1 = document.getElementsByTagName("img")[0];
+img1.remove();
 
 },{"./reset.css":"8XPx9","./global.css":"11axS","./app1.js":"gMhIk","./app2.js":"alK4Z","./app3.js":"264pe","./app4.js":"6ZENx"}],"8XPx9":[function() {},{}],"11axS":[function() {},{}],"gMhIk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _app1Css = require("./app1.css");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+// 初始化html
+const html = `
+    <section id="app1">
+      <div class="output">
+        <span id="number">100</span>
+      </div>
+      <div class="actions">
+        <button id="add1">+1</button>
+        <button id="minus1">-1</button>
+        <button id="mul2">*2</button>
+        <button id="divide2">/2</button>
+      </div>
+    </section>
+`;
+const $element = (0, _jqueryDefault.default)(html).appendTo((0, _jqueryDefault.default)(`body > .page`));
+// 寻找重要的元素
 const $button1 = (0, _jqueryDefault.default)("#add1");
 const $button2 = (0, _jqueryDefault.default)("#minus1");
 const $button3 = (0, _jqueryDefault.default)("#mul2");
 const $button4 = (0, _jqueryDefault.default)("#divide2");
 const $number = (0, _jqueryDefault.default)("#number");
+// 始化数据
 const n = localStorage.getItem("n");
+// 将数据渲染到页面
 $number.text(n || 100);
+// 绑定鼠标事件
 $button1.on("click", ()=>{
     let n = parseInt($number.text());
     n += 1;
@@ -7448,30 +7469,67 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _app2Css = require("./app2.css");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+const html = `    <section id="app2">
+      <ol class="tab-bar">
+        <li><span>111</span></li>
+        <li><span>2222</span></li>
+      </ol>
+      <ol class="tab-content">
+        <li>内容1</li>
+        <li>内容2</li>
+      </ol>
+    </section>
+`;
+const $element = (0, _jqueryDefault.default)(html).appendTo((0, _jqueryDefault.default)(`body>.page`));
 const $tabBar = (0, _jqueryDefault.default)("#app2 .tab-bar");
 const $tabContent = (0, _jqueryDefault.default)("#app2 .tab-content");
+const index = localStorage.getItem("app2.index") || 0;
 $tabBar.on("click", "li", (e)=>{
     // 获取子元素
     const $li = (0, _jqueryDefault.default)(e.currentTarget);
     $li.addClass("selected").siblings().removeClass("selected");
     // 获取子元素在兄弟之间排行老几
     const index = $li.index();
+    localStorage.setItem("app2.index", index);
     // 找到孩子 ，然后将index的孩子css变为
     $tabContent.children().eq(index).addClass("active").siblings().removeClass("active");
 // eq是等于的意思
 });
 // 找到111和222里面的索引为0的元素，触发click事件
-$tabBar.children().eq(0).trigger("click");
+$tabBar.children().eq(index).trigger("click");
 
 },{"./app2.css":"8RnuD","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"8RnuD":[function() {},{}],"264pe":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _app3Css = require("./app3.css");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+const html = `
+    <section id="app3">
+      <div class="square">
+      </div>
+    </section>
+`;
+const $element = (0, _jqueryDefault.default)(html).appendTo((0, _jqueryDefault.default)(`body>.page`));
 const $square = (0, _jqueryDefault.default)("#app3 .square");
+const localKey = "app3.active";
+// yes no undefined
+const active = localStorage.getItem(localKey) === "yes";
+// if(active){
+//   $square.addClass('active')
+// }else{
+//   $square.removeClass('active')
+// }
+$square.toggleClass("active", active);
 $square.on("click", ()=>{
-    // toggleClass 有就加上，没有就删去
-    $square.toggleClass("active");
+    if ($square.hasClass("active")) {
+        $square.removeClass("active");
+        localStorage.setItem(localKey, "no");
+    } else {
+        $square.addClass("active");
+        localStorage.setItem("app3.active", "yes");
+    }
+// toggleClass 有就加上，没有就删去
+// $square.toggleClass('active')
 });
 
 },{"./app3.css":"iOgrn","jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"4FT5E"}],"iOgrn":[function() {},{}],"6ZENx":[function(require,module,exports) {
@@ -7479,6 +7537,12 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
 var _app4Css = require("./app4.css");
+const html = `
+    <section id="app4">
+      <div class="circle"></div>
+    </section>
+`;
+const $element = (0, _jqueryDefault.default)(html).appendTo((0, _jqueryDefault.default)(`body > .page`));
 const $circle = (0, _jqueryDefault.default)("#app4 .circle");
 $circle.on("mouseenter", ()=>{
     $circle.addClass("active");
